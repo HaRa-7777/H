@@ -1,0 +1,135 @@
+#include "DHT.h"
+#define DHTPIN 3
+#define DHTTYPE DHT22
+DHT dhtObject(DHTPIN, DHTTYPE);
+void setup() {
+Serial.begin(9600);
+Serial.println("DHT Initialized");
+dhtObject.begin();
+}
+void loop() {
+float humidity = dhtObject.readHumidity();
+float temperature = dhtObject.readTemperature();
+Serial.print("Temperature: ");
+Serial.print(temperature);
+Serial.println(" °C");
+Serial.print("Humidity: ");
+Serial.print(humidity);
+Serial.println(" %");
+delay(1000);
+}
+---------------------------------------------------------------------------
+
+{
+  "version": 1,
+  "author": "Arduino DHT22",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 100,
+      "left": 100,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 80,
+      "left": 350,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["dht1:VCC", "uno:5V", "red", []],
+    ["dht1:GND", "uno:GND.1", "black", []],
+    ["dht1:SDA", "uno:3", "green", []],
+    ["uno:5V", "dht1:VCC", "red", []]
+  ],
+  "libraries": [
+    {
+      "name": "DHT sensor library",
+      "version": "1.4.4"
+    }
+  ]
+}
+
+--------------------------------------------------------------
+{
+  "version": 1,
+  "author": "Arduino DHT22",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 100,
+      "left": 100,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 80,
+      "left": 350,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["dht1:VCC", "uno:5V", "red", []],
+    ["dht1:GND", "uno:GND.1", "black", []],
+    ["dht1:SDA", "uno:3", "green", []],
+    ["uno:5V", "dht1:VCC", "red", []]
+  ],
+  "libraries": [
+    {
+      "name": "DHT sensor library",
+      "version": "1.4.4"
+    }
+  ]
+}
+-----------------------------------------------------------------------------------
+{
+  "version": 1,
+  "author": "IR Sensor Alarm & Lamp",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 150,
+      "left": 100,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ir-sensor",
+      "id": "ir1",
+      "top": 60,
+      "left": 380,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 200,
+      "left": 420,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 260,
+      "left": 420,
+      "attrs": { "value": "330" }
+    }
+  ],
+  "connections": [
+    ["ir1:VCC", "uno:5V", "red", []],
+    ["ir1:GND", "uno:GND.1", "black", []],
+    ["ir1:OUT", "uno:3", "yellow", []],
+    ["led1:A", "uno:11", "green", []],
+    ["led1:K", "r1:1", "green", []],
+    ["r1:2", "uno:GND.2", "black", []]
+  ]
+}
+----------------------------------------------------------------------------------------
