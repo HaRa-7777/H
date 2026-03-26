@@ -1,0 +1,98 @@
+const int pirPin = 7, ledPin = 13;
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  bool motion = digitalRead(pirPin);
+  digitalWrite(ledPin, motion);
+  Serial.println(motion ? "Motion Detected! LED ON" : "No Motion. LED OFF");
+  delay(500);
+}
+
+------------------------------------------------------------------------------
+{
+  "version": 1,
+  "author": "IoT Practical",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -18.6, "left": -144.6, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 4, "left": 203.82, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 80, "left": 420, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 140, "left": 420, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "pir1:VCC", "uno:5V", "red", [] ],
+    [ "pir1:GND", "uno:GND.1", "black", [] ],
+    [ "pir1:OUT", "uno:7", "yellow", [] ],
+    [ "uno:13", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:C", "uno:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const int ldrPin = A0, ledPin = 9;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int light = analogRead(ldrPin);
+  bool dark = light < 500;
+  digitalWrite(ledPin, dark);
+  Serial.println(dark ? "Dark! LED ON" : "Bright! LED OFF");
+  delay(500);
+}
+--------------------------------------------------------------------------------------------------------------------
+{
+  "version": 1,
+  "author": "Claude",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -100,
+      "left": 200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -100,
+      "left": 350,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 0,
+      "left": 350,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    ["ldr1:VCC", "uno:5V", "red", []],
+    ["ldr1:GND", "uno:GND.1", "black", []],
+    ["ldr1:AO", "uno:A0", "green", []],
+
+    ["led1:A", "r1:1", "red", []],
+    ["r1:2", "uno:9", "orange", []],
+    ["led1:C", "uno:GND.2", "black", []]
+  ],
+  "dependencies": {}
+}
+---------------------------------------------------------------------------------------------------------------------------
