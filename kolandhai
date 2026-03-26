@@ -45,3 +45,25 @@ void loop() {
   "dependencies": {}
 }
 ------------------------------------------------------------------------------
+int count = 0;
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Counter Started!");
+}
+void loop() {
+  count++;
+  Serial.print("Count: "); Serial.println(count);
+  if (count == 10) { Serial.println(" Reached 10! Resetting..."); count = 0; }
+  delay(1000);
+}
+----------------------------------------------------------------------------------------------------------
+{
+  "version": 1,
+  "author": "IoT Practical",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 160, "left": 0, "attrs": {} }
+  ],
+  "connections": []
+}
+--------------------------------------------------------------------------------------------------------
