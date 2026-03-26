@@ -1,1 +1,31 @@
+void setup() {
+  pinMode(8, OUTPUT);
+}
+
+void loop() {
+  tone(8, 1000);   // 1000 Hz sound
+  delay(500);
+  noTone(8);
+  delay(500);
+}
+--------------------------------------------------------------
+
+{
+  "version": 1,
+  "author": "Naren KARTHIKEYAN N",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -84,
+      "left": -103.8,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [ [ "bz1:2", "uno:8", "green", [ "v0" ] ], [ "bz1:1", "uno:GND.2", "green", [ "v0" ] ] ],
+  "dependencies": {}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
 
