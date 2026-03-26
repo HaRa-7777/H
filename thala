@@ -1,1 +1,59 @@
+const int red = 11, yellow = 10, green = 9;
+void setup() {
+  pinMode(red, OUTPUT); pinMode(yellow, OUTPUT); pinMode(green, OUTPUT);
+  Serial.begin(9600);
+}
+void light(int pin, const char* msg, int t) {
+  digitalWrite(red, LOW); digitalWrite(yellow, LOW); digitalWrite(green, LOW);
+  digitalWrite(pin, HIGH); Serial.println(msg); delay(t);
+}
+void loop() {
+  light(red,    "RED    - Stop!",  3000);
+  light(yellow, "YELLOW - Ready!", 1000);
+  light(green,  "GREEN  - Go!",   3000);
+}
+----------------------------------------------------------------------------------
 
+{
+  "version": 1,
+  "author": "IoT Practical",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 200, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_r", "top": 20, "left": 400, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led_y", "top": 80, "left": 400, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "led_g", "top": 140, "left": 400, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 20, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 80, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 140, "left": 300, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    ["uno:11", "r1:1", "red", []],    ["r1:2", "led_r:A", "red", []],    ["led_r:C", "uno:GND.1", "black", []],
+    ["uno:10", "r2:1", "orange", []], ["r2:2", "led_y:A", "orange", []], ["led_y:C", "uno:GND.2", "black", []],
+    ["uno:9",  "r3:1", "green", []],  ["r3:2", "led_g:A", "green", []],  ["led_g:C", "uno:GND.3", "black", []]
+  ]
+}
+------------------------------------------------------------------------------------------------------------
+
+int count = 0;
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Counter Started!");
+}
+void loop() {
+  count++;
+  Serial.print("Count: "); Serial.println(count);
+  if (count == 10) { Serial.println(" Reached 10! Resetting..."); count = 0; }
+  delay(1000);
+}
+----------------------------------------------------------------------------------------------------------
+{
+  "version": 1,
+  "author": "IoT Practical",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 160, "left": 0, "attrs": {} }
+  ],
+  "connections": []
+}
+--------------------------------------------------------------------------------------------------------
